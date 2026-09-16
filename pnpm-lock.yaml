@@ -58,6 +58,156 @@ importers:
         specifier: ^5
         version: 5.9.3
 
+  episodes/02-package-json/app:
+    dependencies:
+      '@ep2/lib-deps-external':
+        specifier: workspace:*
+        version: link:../lib-deps-external
+      '@ep2/lib-deps-inline':
+        specifier: workspace:*
+        version: link:../lib-deps-inline
+      '@ep2/lib-exports-broken':
+        specifier: workspace:*
+        version: link:../lib-exports-broken
+      '@ep2/lib-exports-ok':
+        specifier: workspace:*
+        version: link:../lib-exports-ok
+      '@ep2/lib-side-effects-false':
+        specifier: workspace:*
+        version: link:../lib-side-effects-false
+      '@ep2/lib-side-effects-list':
+        specifier: workspace:*
+        version: link:../lib-side-effects-list
+      '@ep2/lib-side-effects-partial':
+        specifier: workspace:*
+        version: link:../lib-side-effects-partial
+      '@ep2/lib-side-effects-unset':
+        specifier: workspace:*
+        version: link:../lib-side-effects-unset
+      '@ep2/tiny-dep':
+        specifier: workspace:*
+        version: link:../tiny-dep
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/duplicate-react/app:
+    dependencies:
+      '@ep2/lib-react-dep':
+        specifier: workspace:*
+        version: link:../lib-react-dep
+      '@ep2/lib-react-peer':
+        specifier: workspace:*
+        version: link:../lib-react-peer
+      react:
+        specifier: 19.2.4
+        version: 19.2.4
+
+  episodes/02-package-json/duplicate-react/lib-react-dep:
+    dependencies:
+      react:
+        specifier: 18.3.1
+        version: 18.3.1
+
+  episodes/02-package-json/duplicate-react/lib-react-peer:
+    dependencies:
+      react:
+        specifier: '>=18'
+        version: 19.2.4
+
+  episodes/02-package-json/lib-deps-external:
+    dependencies:
+      '@ep2/tiny-dep':
+        specifier: workspace:*
+        version: link:../tiny-dep
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/lib-deps-inline:
+    dependencies:
+      '@ep2/tiny-dep':
+        specifier: workspace:*
+        version: link:../tiny-dep
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/lib-exports-broken:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/lib-exports-ok:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/lib-side-effects-false:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/lib-side-effects-list:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/lib-side-effects-partial:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/lib-side-effects-unset:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/02-package-json/tiny-dep:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
 packages:
 
   /@oxc-project/types@0.149.0:
@@ -457,6 +607,17 @@ packages:
     engines: {node: ^22.18.0 || >=24.0.0}
     dev: true
 
+  /js-tokens@4.0.0:
+    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    dev: false
+
+  /loose-envify@1.4.0:
+    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
+    hasBin: true
+    dependencies:
+      js-tokens: 4.0.0
+    dev: false
+
   /obug@2.2.1:
     resolution: {integrity: sha512-XrsrhT5sybtKI6wakr2SPOlGZWWYbUXZ7a0jT8/QOeAPau+1X/bSegNe5YR75oJmEZQbKningirmGOEJCIk61Q==}
     engines: {node: '>=12.20.0'}
@@ -470,6 +631,18 @@ packages:
   /quansync@1.0.0:
     resolution: {integrity: sha512-5xZacEEufv3HSTPQuchrvV6soaiACMFnq1H8wkVioctoH3TRha9Sz66lOxRwPK/qZj7HPiSveih9yAyh98gvqA==}
     dev: true
+
+  /react@18.3.1:
+    resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+    dev: false
+
+  /react@19.2.4:
+    resolution: {integrity: sha512-9nfp2hYpCwOjAN+8TZFGhtWEwgvWHXqESH8qT89AT/lWklpLON22Lc8pEtnpsZz7VmawabSU0gCjnj8aC0euHQ==}
+    engines: {node: '>=0.10.0'}
+    dev: false
 
   /resolve-pkg-maps@1.0.0:
     resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}

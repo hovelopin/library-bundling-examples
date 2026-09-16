@@ -1,0 +1,18 @@
+{
+  "name": "@ep2/lib-exports-broken",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": { "build": "tsdown" },
+  "devDependencies": { "tsdown": "^0.23.0", "typescript": "^5" }
+}
