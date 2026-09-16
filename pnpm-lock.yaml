@@ -15,6 +15,49 @@ importers:
         specifier: ^5
         version: 5.9.3
 
+  episodes/01-bundler-and-formats/app-cjs:
+    dependencies:
+      '@ep1/lib':
+        specifier: workspace:*
+        version: link:../lib
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/01-bundler-and-formats/app-esm:
+    dependencies:
+      '@ep1/lib':
+        specifier: workspace:*
+        version: link:../lib
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  episodes/01-bundler-and-formats/app-unbundled: {}
+
+  episodes/01-bundler-and-formats/hazard:
+    dependencies:
+      '@ep1/lib':
+        specifier: workspace:*
+        version: link:../lib
+
+  episodes/01-bundler-and-formats/lib:
+    devDependencies:
+      tsdown:
+        specifier: ^0.23.0
+        version: 0.23.0(typescript@5.9.3)
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
 packages:
 
   /@oxc-project/types@0.149.0:

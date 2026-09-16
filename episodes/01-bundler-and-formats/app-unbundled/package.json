@@ -1,0 +1,11 @@
+{
+  "name": "@ep1/app-unbundled",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo '(번들 없음 — 빌드 단계가 없다)'",
+    "serve": "node serve.mjs",
+    "crawl": "node serve.mjs --crawl"
+  }
+}
