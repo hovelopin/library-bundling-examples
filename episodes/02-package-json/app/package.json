@@ -9,15 +9,18 @@
     "exports": "node scripts/exports.mjs"
   },
   "dependencies": {
-    "@ep2/lib-exports-ok": "workspace:*",
+    "@ep2/lib-deps-external": "workspace:*",
+    "@ep2/lib-deps-inline": "workspace:*",
     "@ep2/lib-exports-broken": "workspace:*",
-    "@ep2/lib-side-effects-unset": "workspace:*",
+    "@ep2/lib-exports-ok": "workspace:*",
     "@ep2/lib-side-effects-false": "workspace:*",
     "@ep2/lib-side-effects-list": "workspace:*",
     "@ep2/lib-side-effects-partial": "workspace:*",
-    "@ep2/lib-deps-inline": "workspace:*",
-    "@ep2/lib-deps-external": "workspace:*",
+    "@ep2/lib-side-effects-unset": "workspace:*",
     "@ep2/tiny-dep": "workspace:*"
   },
-  "devDependencies": { "tsdown": "^0.23.0", "typescript": "^5" }
+  "devDependencies": {
+    "tsdown": "^0.23.0",
+    "typescript": "^5"
+  }
 }

@@ -1,1 +1,21 @@
-{ "name": "@ep2/lib-side-effects-false", "sideEffects": false, "version": "0.0.0", "private": true, "type": "module", "files": ["dist"], "exports": { ".": "./dist/index.js", "./package.json": "./package.json" }, "scripts": { "build": "tsdown" }, "devDependencies": { "tsdown": "^0.23.0", "typescript": "^5" } }
+{
+  "name": "@ep2/lib-side-effects-false",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown"
+  },
+  "devDependencies": {
+    "tsdown": "^0.23.0",
+    "typescript": "^5"
+  }
+}

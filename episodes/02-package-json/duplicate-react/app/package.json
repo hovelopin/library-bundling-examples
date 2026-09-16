@@ -3,10 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "scripts": { "build": "echo '(빌드 없음)'", "start": "node run.mjs" },
+  "scripts": {
+    "build": "echo '(빌드 없음)'",
+    "start": "node run.mjs"
+  },
   "dependencies": {
-    "react": "19.2.4",
     "@ep2/lib-react-dep": "workspace:*",
-    "@ep2/lib-react-peer": "workspace:*"
+    "@ep2/lib-react-peer": "workspace:*",
+    "react": "19.2.4"
   }
 }

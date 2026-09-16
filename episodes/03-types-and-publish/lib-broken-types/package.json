@@ -2,9 +2,11 @@
   "name": "@ep3/lib-broken-types",
   "version": "0.0.0",
   "private": true,
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "sideEffects": false,
-  "files": ["dist"],
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "exports": {

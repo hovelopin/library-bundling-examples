@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn"
+  },
+  "env": {
+    "builtin": true,
+    "node": true,
+    "browser": true
+  },
+  "ignorePatterns": ["dist", "dist-*", "**/src/gen/**", "**/smoke/tmp/**"],
+  "rules": {
+    "no-underscore-dangle": [
+      "warn",
+      {
+        "allow": ["__registry"]
+      }
+    ]
+  }
+}

@@ -4,5 +4,7 @@
   "private": true,
   "type": "module",
   "exports": "./index.js",
-  "peerDependencies": { "react": ">=18" }
+  "peerDependencies": {
+    "react": ">=18"
+  }
 }

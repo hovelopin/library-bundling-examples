@@ -11,7 +11,7 @@ node episodes/01-bundler-and-formats/hazard/run.mjs
 
 ## 번들 없이 로드 vs 번들 1개 (app-unbundled, `--crawl`)
 
-| | 요청 수 | 전송 바이트 | 왕복(round-trip) |
+| | 요청 수 | 전송 바이트 | 요청 단계(round-trip) |
 |---|---|---|---|
 | 번들 없음 (`main.js` → `index.js` → 파일 5개) | 7 | 2,768 | 3 |
 | 번들 (`main-bundled.js` → `dist/index.js`) | 2 | 2,290 | 2 |
@@ -41,3 +41,28 @@ same class?       false
 instanceof esm?   false
 instanceof cjs?   true
 ```
+
+## ESM only 로 충분한가 (2026-09-16 재검증, Node 24.13 / TypeScript 5.9.3)
+
+`require(esm)` 이후에도 CJS 를 내야 할 이유가 남는지 확인했다. 실험은 임시 패키지로 했고
+결과만 남긴다(ESM only 패키지 하나, 그리고 최상위 await 를 가진 패키지 하나를 만들어 소비).
+
+| 실험 | 결과 |
+|---|---|
+| CJS 에서 ESM only 패키지 require | 성공 |
+| 그 패키지에 최상위 await 가 있을 때 | `ERR_REQUIRE_ASYNC_MODULE` |
+| 내 코드엔 최상위 await 가 없고 **의존성에만** 있을 때 | `ERR_REQUIRE_ASYNC_MODULE` (그래프 전체에 적용) |
+| CJS 에서 동적 import | 성공 |
+| `.cts` + `module: node16` 으로 타입 검사 | `TS1471` |
+| `.cts` + `module: nodenext` / `node20` | 통과 |
+
+결론: require 로 쓰는 소비자가 있다는 것만으로는 CJS 를 낼 이유가 되지 않는다.
+최상위 await(의존성 포함), `module: node16` 소비자, Jest 중 하나라도 해당할 때만 두 포맷을 낸다.
+
+참고한 문서:
+
+- [Node.js 20.19.0 릴리스 노트 — require(esm) 기본 활성화](https://nodejs.org/en/blog/release/v20.19.0)
+- [Node.js — End-of-Life 일정](https://nodejs.org/en/about/eol) (Node 20 은 2026-04-30 EOL)
+- [require(esm) Backported to Node.js 20 — Socket](https://socket.dev/blog/require-esm-backported-to-node-js-20)
+- [Node.js Docs — Modules: Packages](https://nodejs.org/api/packages.html)
+- [Jest — ECMAScript Modules](https://jestjs.io/docs/ecmascript-modules)

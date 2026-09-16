@@ -41,5 +41,8 @@ export function describe${id}(r: Record${id}): string {
   );
   exportsIndex.push(`export * from "./gen/mod-${id}";`);
 }
-writeFileSync(join(root, "src", "index.ts"), `// gen.mjs 가 만든다. 직접 고치지 말 것.\n${exportsIndex.join("\n")}\n`);
+writeFileSync(
+  join(root, "src", "index.ts"),
+  `// gen.mjs 가 만든다. 직접 고치지 말 것.\n${exportsIndex.join("\n")}\n`,
+);
 console.log(`generated ${N} modules → src/gen`);

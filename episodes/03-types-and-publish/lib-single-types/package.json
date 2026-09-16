@@ -2,10 +2,11 @@
   "name": "@ep3/lib-single-types",
   "version": "0.0.0",
   "private": true,
+  "files": [
+    "dist"
+  ],
   "type": "module",
   "sideEffects": false,
-  "engines": { "node": ">=20" },
-  "files": ["dist"],
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
   "exports": {
@@ -25,5 +26,8 @@
     "publint": "^0.3.24",
     "tsdown": "^0.23.0",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

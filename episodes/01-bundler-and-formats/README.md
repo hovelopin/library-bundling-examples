@@ -26,7 +26,7 @@ pnpm --filter "@ep1/*" build
 node episodes/01-bundler-and-formats/app-unbundled/serve.mjs --crawl
 ```
 
-`depth` 열이 "몇 번째 왕복에서 그 파일을 알게 됐는가"다. 번들 없음은 요청 7번·왕복 3번, 번들은 요청 2번·왕복 2번이 나와야 한다.
+`depth` 열이 "그 파일을 알아내기까지 몇 단계를 거쳤는가"다. 번들 없음은 요청 7번·3단계, 번들은 요청 2번·2단계가 나와야 한다. 단계가 하나 늘 때마다 서버를 한 번 더 다녀오므로, 출력의 round-trips 가 그 횟수다.
 
 브라우저로 직접 보고 싶으면 `--crawl` 없이 띄우고 `http://localhost:4173/app-unbundled/` 를 연 뒤 DevTools 의 Network 탭을 보자. 터미널에도 요청 로그가 찍힌다.
 

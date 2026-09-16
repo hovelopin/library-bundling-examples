@@ -2,11 +2,11 @@
   "name": "@ep2/lib-exports-ok",
   "version": "0.0.0",
   "private": true,
-  "type": "module",
-  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
       "import": {

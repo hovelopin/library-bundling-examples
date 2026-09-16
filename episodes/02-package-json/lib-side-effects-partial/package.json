@@ -1,1 +1,23 @@
-{ "name": "@ep2/lib-side-effects-partial", "sideEffects": ["./dist/register.js"], "version": "0.0.0", "private": true, "type": "module", "files": ["dist"], "exports": { ".": "./dist/index.js", "./package.json": "./package.json" }, "scripts": { "build": "tsdown" }, "devDependencies": { "tsdown": "^0.23.0", "typescript": "^5" } }
+{
+  "name": "@ep2/lib-side-effects-partial",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "./dist/register.js"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsdown"
+  },
+  "devDependencies": {
+    "tsdown": "^0.23.0",
+    "typescript": "^5"
+  }
+}

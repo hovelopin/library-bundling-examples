@@ -35,7 +35,11 @@ export class Emitter<Events extends Record<string, unknown>> {
 }
 
 /** 두 이미터를 이어 붙인다. from 의 모든 이벤트를 to 로 흘려보낸다. */
-export function pipe<E extends Record<string, unknown>>(from: Emitter<E>, to: Emitter<E>, events: (keyof E)[]): () => void {
+export function pipe<E extends Record<string, unknown>>(
+  from: Emitter<E>,
+  to: Emitter<E>,
+  events: (keyof E)[],
+): () => void {
   const offs = events.map((ev) => from.on(ev, (p) => to.emit(ev, p)));
   return () => offs.forEach((off) => off());
 }

@@ -10,14 +10,35 @@ import { fileURLToPath } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 const TSC = resolve(here, "../../../node_modules/.bin/tsc");
 const LIBS = [
-  { dir: "../lib", name: "@ep3/lib", esm: "import { make000 } from '@ep3/lib'; console.log(make000('x').id)", cjs: "console.log(require('@ep3/lib').make000('x').id)", ts: "import { make000 } from '@ep3/lib';\nconst r: number = make000('x').id;\n" },
-  { dir: "../lib-broken-types", name: "@ep3/lib-broken-types", esm: "import { add } from '@ep3/lib-broken-types'; console.log(add(1,2))", cjs: "console.log(require('@ep3/lib-broken-types').add(1,2))", ts: "import { add } from '@ep3/lib-broken-types';\nconst n: number = add(1, 2);\n" },
-  { dir: "../lib-type-leak", name: "@ep3/lib-type-leak", esm: "import { createBus } from '@ep3/lib-type-leak'; console.log(typeof createBus().on)", cjs: null, ts: "import { createBus } from '@ep3/lib-type-leak';\ncreateBus().on('message', (m) => m.length);\n" },
+  {
+    dir: "../lib",
+    name: "@ep3/lib",
+    esm: "import { make000 } from '@ep3/lib'; console.log(make000('x').id)",
+    cjs: "console.log(require('@ep3/lib').make000('x').id)",
+    ts: "import { make000 } from '@ep3/lib';\nconst r: number = make000('x').id;\n",
+  },
+  {
+    dir: "../lib-broken-types",
+    name: "@ep3/lib-broken-types",
+    esm: "import { add } from '@ep3/lib-broken-types'; console.log(add(1,2))",
+    cjs: "console.log(require('@ep3/lib-broken-types').add(1,2))",
+    ts: "import { add } from '@ep3/lib-broken-types';\nconst n: number = add(1, 2);\n",
+  },
+  {
+    dir: "../lib-type-leak",
+    name: "@ep3/lib-type-leak",
+    esm: "import { createBus } from '@ep3/lib-type-leak'; console.log(typeof createBus().on)",
+    cjs: null,
+    ts: "import { createBus } from '@ep3/lib-type-leak';\ncreateBus().on('message', (m) => m.length);\n",
+  },
 ];
 
 function run(cmd, args, cwd) {
   const r = spawnSync(cmd, args, { cwd, encoding: "utf8" });
-  return { ok: r.status === 0, out: (r.stdout + r.stderr).trim().split("\n").slice(0, 3).join(" | ") };
+  return {
+    ok: r.status === 0,
+    out: (r.stdout + r.stderr).trim().split("\n").slice(0, 3).join(" | "),
+  };
 }
 
 for (const lib of LIBS) {
@@ -26,10 +47,19 @@ for (const lib of LIBS) {
   rmSync(tmp, { recursive: true, force: true });
   mkdirSync(tmp, { recursive: true });
 
-  execFileSync("npm", ["pack", "--pack-destination", tmp, "--silent"], { cwd: libDir, stdio: "ignore" });
+  execFileSync("npm", ["pack", "--pack-destination", tmp, "--silent"], {
+    cwd: libDir,
+    stdio: "ignore",
+  });
   const tgz = readdirSync(tmp).find((f) => f.endsWith(".tgz"));
-  writeFileSync(join(tmp, "package.json"), JSON.stringify({ name: "consumer", private: true, type: "module" }));
-  execFileSync("npm", ["install", "--silent", "--no-audit", "--no-fund", `./${tgz}`], { cwd: tmp, stdio: "ignore" });
+  writeFileSync(
+    join(tmp, "package.json"),
+    JSON.stringify({ name: "consumer", private: true, type: "module" }),
+  );
+  execFileSync("npm", ["install", "--silent", "--no-audit", "--no-fund", `./${tgz}`], {
+    cwd: tmp,
+    stdio: "ignore",
+  });
 
   const results = {};
   results.import = run("node", ["--input-type=module", "-e", lib.esm], tmp);
@@ -37,7 +67,19 @@ for (const lib of LIBS) {
   // 소비자가 흔히 쓰는 두 해석 방식으로 타입을 검사한다.
   writeFileSync(join(tmp, "check.ts"), lib.ts);
   const tsc = (label, file, mr) =>
-    (results[label] = run(TSC, ["--noEmit", "--strict", "--module", mr === "node16" ? "node16" : "esnext", "--moduleResolution", mr, file], tmp));
+    (results[label] = run(
+      TSC,
+      [
+        "--noEmit",
+        "--strict",
+        "--module",
+        mr === "node16" ? "node16" : "esnext",
+        "--moduleResolution",
+        mr,
+        file,
+      ],
+      tmp,
+    ));
   tsc("tsc bundler", "check.ts", "bundler");
   tsc("tsc node16 esm", "check.ts", "node16");
   if (lib.cjs) {
@@ -47,5 +89,6 @@ for (const lib of LIBS) {
   }
 
   console.log(`\n${lib.name}`);
-  for (const [k, v] of Object.entries(results)) console.log(`  ${v.ok ? "✔" : "✘"} ${k.padEnd(15)} ${v.ok ? "" : v.out}`);
+  for (const [k, v] of Object.entries(results))
+    console.log(`  ${v.ok ? "✔" : "✘"} ${k.padEnd(15)} ${v.ok ? "" : v.out}`);
 }

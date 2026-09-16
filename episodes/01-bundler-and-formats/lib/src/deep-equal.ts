@@ -15,5 +15,7 @@ export function deepEqual(a: unknown, b: unknown, seen: WeakSet<object> = new We
   const ka = Object.keys(a);
   const kb = Object.keys(b);
   if (ka.length !== kb.length) return false;
-  return ka.every((k) => deepEqual((a as Record<string, unknown>)[k], (b as Record<string, unknown>)[k], seen));
+  return ka.every((k) =>
+    deepEqual((a as Record<string, unknown>)[k], (b as Record<string, unknown>)[k], seen),
+  );
 }

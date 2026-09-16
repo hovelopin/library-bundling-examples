@@ -9,5 +9,9 @@ try {
   console.log("2) 미등록 경로     :", e.code);
 }
 console.log("3) require, ok    :", require.resolve("@ep2/lib-exports-ok"));
-console.log("4) require, broken:", require.resolve("@ep2/lib-exports-broken"), "← default 가 먼저라 cjs 를 못 고른다");
+console.log(
+  "4) require, broken:",
+  require.resolve("@ep2/lib-exports-broken"),
+  "← default 가 먼저라 cjs 를 못 고른다",
+);
 console.log("5) import, ok     :", import.meta.resolve("@ep2/lib-exports-ok"));

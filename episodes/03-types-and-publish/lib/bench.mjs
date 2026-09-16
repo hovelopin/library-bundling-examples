@@ -11,14 +11,34 @@ import { rmSync } from "node:fs";
 const BIN = "../../../node_modules/.bin/";
 const RUNS = 3;
 const CASES = [
-  { name: "tsc --emitDeclarationOnly", cmd: BIN + "tsc", args: ["-p", "tsconfig.emit.json"], clean: "dist-tsc" },
-  { name: "tsdown (generator: tsc)", cmd: BIN + "tsdown", args: ["-c", "tsdown.tsc.config.ts"], clean: "dist-tscgen" },
-  { name: "tsdown (generator: oxc)", cmd: BIN + "tsdown", args: ["-c", "tsdown.oxc.config.ts"], clean: "dist" },
-  { name: "tsdown (dts 없음, 기준선)", cmd: BIN + "tsdown", args: ["-c", "tsdown.nodts.config.ts"], clean: "dist-nodts" },
+  {
+    name: "tsc --emitDeclarationOnly",
+    cmd: BIN + "tsc",
+    args: ["-p", "tsconfig.emit.json"],
+    clean: "dist-tsc",
+  },
+  {
+    name: "tsdown (generator: tsc)",
+    cmd: BIN + "tsdown",
+    args: ["-c", "tsdown.tsc.config.ts"],
+    clean: "dist-tscgen",
+  },
+  {
+    name: "tsdown (generator: oxc)",
+    cmd: BIN + "tsdown",
+    args: ["-c", "tsdown.oxc.config.ts"],
+    clean: "dist",
+  },
+  {
+    name: "tsdown (dts 없음, 기준선)",
+    cmd: BIN + "tsdown",
+    args: ["-c", "tsdown.nodts.config.ts"],
+    clean: "dist-nodts",
+  },
   { name: "tsc --noEmit (참고)", cmd: BIN + "tsc", args: ["--noEmit"], clean: null },
 ];
 
-const median = (xs) => [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)];
+const median = (xs) => xs.toSorted((a, b) => a - b)[Math.floor(xs.length / 2)];
 const rows = [];
 for (const c of CASES) {
   const times = [];

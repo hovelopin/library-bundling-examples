@@ -14,7 +14,9 @@ const server = createServer(async (req, res) => {
   const file = join(ROOT, url.pathname.endsWith("/") ? url.pathname + "index.html" : url.pathname);
   try {
     const body = await readFile(file);
-    res.writeHead(200, { "content-type": TYPES[posix.extname(file)] ?? "application/octet-stream" });
+    res.writeHead(200, {
+      "content-type": TYPES[posix.extname(file)] ?? "application/octet-stream",
+    });
     res.end(body);
     console.log(`GET ${url.pathname} ${body.length}B`);
   } catch {
@@ -47,6 +49,9 @@ async function crawl(base, entry) {
   return rows;
 }
 
+const sum = (rows) => rows.reduce((n, r) => n + r.bytes, 0);
+const depth = (rows) => Math.max(...rows.map((r) => r.depth)) + 1;
+
 server.listen(4173, async () => {
   const base = "http://localhost:4173";
   if (!process.argv.includes("--crawl")) {
@@ -56,9 +61,11 @@ server.listen(4173, async () => {
   const unbundled = await crawl(base, "/app-unbundled/main.js");
   const bundled = await crawl(base, "/app-unbundled/main-bundled.js");
   console.table(unbundled);
-  const sum = (rows) => rows.reduce((n, r) => n + r.bytes, 0);
-  const depth = (rows) => Math.max(...rows.map((r) => r.depth)) + 1;
-  console.log(`unbundled: ${unbundled.length} requests, ${sum(unbundled)} bytes, ${depth(unbundled)} round-trips`);
-  console.log(`bundled:   ${bundled.length} requests, ${sum(bundled)} bytes, ${depth(bundled)} round-trips`);
+  console.log(
+    `unbundled: ${unbundled.length} requests, ${sum(unbundled)} bytes, ${depth(unbundled)} round-trips`,
+  );
+  console.log(
+    `bundled:   ${bundled.length} requests, ${sum(bundled)} bytes, ${depth(bundled)} round-trips`,
+  );
   server.close();
 });
