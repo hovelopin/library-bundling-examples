@@ -21,7 +21,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "tsdown && tsdown --unbundle --format esm -d dist-unbundled --no-clean",
+    "build": "tsdown && tsdown --unbundle --format esm -d dist-unbundled",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

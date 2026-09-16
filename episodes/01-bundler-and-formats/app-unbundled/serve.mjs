@@ -64,6 +64,8 @@ server.listen(4173, async () => {
   console.log(
     `unbundled: ${unbundled.length} requests, ${sum(unbundled)} bytes, ${depth(unbundled)} round-trips`,
   );
+
+  console.table(bundled);
   console.log(
     `bundled:   ${bundled.length} requests, ${sum(bundled)} bytes, ${depth(bundled)} round-trips`,
   );
