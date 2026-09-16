@@ -1,0 +1,7 @@
+{
+  "name": "@ep3/smoke",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "echo '(빌드 없음)'", "start": "node run.mjs" }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@ep3/lib-type-leak",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "files": ["dist"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": { "build": "tsdown" },
+  "devDependencies": {
+    "@ep2/tiny-dep": "workspace:*",
+    "tsdown": "^0.23.0",
+    "typescript": "^5"
+  }
+}

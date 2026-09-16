@@ -1,0 +1,27 @@
+{
+  "name": "@ep3/lib-broken-types",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "files": ["dist"],
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown && rm -f dist/index.d.cts",
+    "publint": "publint",
+    "attw": "attw --pack ."
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "publint": "^0.3.24",
+    "tsdown": "^0.23.0",
+    "typescript": "^5"
+  }
+}
