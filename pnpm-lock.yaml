@@ -64,6 +64,12 @@ importers:
         specifier: ^5
         version: 5.9.3
 
+  episodes/01-bundler-and-formats/static-analysis:
+    devDependencies:
+      rolldown:
+        specifier: 1.2.8
+        version: 1.2.8
+
   episodes/02-package-json/app:
     dependencies:
       '@ep2/lib-deps-external':

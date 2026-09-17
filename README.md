@@ -4,7 +4,7 @@
 
 | 편 | 폴더 | 다루는 것 |
 |---|---|---|
-| 1 | [`episodes/01-bundler-and-formats`](episodes/01-bundler-and-formats) | 번들 유무에 따른 요청 수, CommonJS vs ESM 소비자 번들 크기, dual package hazard |
+| 1 | [`episodes/01-bundler-and-formats`](episodes/01-bundler-and-formats) | 번들 유무에 따른 요청 수, CommonJS vs ESM 정적 분석과 소비자 번들 크기, dual package hazard |
 | 2 | [`episodes/02-package-json`](episodes/02-package-json) | exports 조건 해석, sideEffects 4가지 설정, 의존성 인라인 vs external, React 두 벌 |
 | 3 | [`episodes/03-types-and-publish`](episodes/03-types-and-publish) | d.ts 생성 시간, attw/publint, 타입 누수, npm pack 스모크 테스트 |
 

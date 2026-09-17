@@ -7,6 +7,7 @@ pnpm install && pnpm --filter "@ep1/*" build
 node episodes/01-bundler-and-formats/app-unbundled/serve.mjs --crawl
 node scripts/size.mjs episodes/01-bundler-and-formats/app-esm/dist/main.js episodes/01-bundler-and-formats/app-cjs/dist/main.js
 node episodes/01-bundler-and-formats/hazard/run.mjs
+pnpm --filter @ep1/static-analysis start
 ```
 
 ## 번들 없이 로드 vs 번들 1개 (app-unbundled, `--crawl`)
@@ -40,6 +41,29 @@ raw 기준 6.7배.
 same class?       false
 instanceof esm?   false
 instanceof cjs?   true
+```
+
+## 정적 분석 (static-analysis/run.mjs)
+
+```
+[ESM] esm/main.js 에서 출발. 파일을 하나도 실행하지 않고 읽기만 했다
+
+  main.js  내보내는 이름: [없음]
+    lib/index.js  내보내는 이름: [slugify, clamp, VERSION]
+      lib/slugify.js  내보내는 이름: [slugify]
+      lib/clamp.js  내보내는 이름: [clamp, VERSION]
+
+[CJS] cjs/index.cjs 를 같은 파서로 읽기만 했다
+
+  require  process.env.MODE === "upper" ? "./upper.cjs" : "./lower.cjs"  ← 식이라 실행해야 안다
+  exports  "util_" + name  ← 식이라 실행해야 안다
+
+[확인] ESM 을 실제로 실행하면
+  slugify.js 가 실행됐다!  ← 그래프를 먼저 다 읽고, 가장 안쪽 파일부터 실행한다
+
+[확인] CJS 는 실행해야 내보내는 이름이 정해진다
+  MODE=upper → [util_upper]
+  MODE=lower → [util_lower]
 ```
 
 ## ESM only 로 충분한가 (2026-09-16 재검증, Node 24.13 / TypeScript 5.9.3)
