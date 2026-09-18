@@ -88,5 +88,6 @@ instanceof cjs?   true
 - [Node.js 20.19.0 릴리스 노트 — require(esm) 기본 활성화](https://nodejs.org/en/blog/release/v20.19.0)
 - [Node.js — End-of-Life 일정](https://nodejs.org/en/about/eol) (Node 20 은 2026-04-30 EOL)
 - [require(esm) Backported to Node.js 20 — Socket](https://socket.dev/blog/require-esm-backported-to-node-js-20)
-- [Node.js Docs — Modules: Packages](https://nodejs.org/api/packages.html)
+- [Node.js Docs — Modules: Packages (exports 필드)](https://nodejs.org/api/packages.html)
+- [nodejs/package-examples — Dual package hazard](https://github.com/nodejs/package-examples/blob/main/guide/07-dual-packages/README.md)
 - [Jest — ECMAScript Modules](https://jestjs.io/docs/ecmascript-modules)
